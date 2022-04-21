@@ -5,14 +5,16 @@
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title">المعاير الرئسيه</h3>
+                <h3 class="content-header-title">
+                       Categories
+                </h3>
                 <div class="row breadcrumbs-top">
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">الصفحه الرئسيه</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Main</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                المعاير الرئسيه
+                                Categories
                             </li>
                         </ol>
                     </div>
@@ -26,7 +28,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">جميع المعاير الرئسيه</h4>
+                                <h4 class="card-title">
+                                        All Categories
+                                </h4>
                                 <a class="heading-elements-toggle"><i
                                         class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
@@ -47,29 +51,30 @@
                                     {{-- scroll-horizontal class to make table scroll --}}
                                     <table
                                         class="table display nowrap table-striped table-bordered ">
+
                                         <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>الاسم</th>
-                                            <th>الحاله</th>
+                                            <th>Name</th>
+                                            <th>Main Category</th>
+                                            <th>Status</th>
+                                            <th>Options</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                            @isset($main_criteria)
-                                                @foreach ($main_criteria as $criteria)
+                                            @isset($categories)
+                                                @foreach ($categories as $categorie)
                                                     <tr>
-                                                        <td>{{ $criteria -> id }} </td>
-                                                        <td>{{ $criteria -> name }} </td>
-                                                        <td>{{ $criteria -> getActive() }}</td>
-
+                                                        <td>{{ $categorie -> name }} </td>
+                                                        <td>{{ $categorie -> _parents -> name ?? '--' }} </td>
+                                                        <td>{{ $categorie -> getActive() }}</td>
                                                         <td>
                                                             <div class="btn-group" role="group"
                                                                 aria-label="Basic example">
-                                                                <a href="{{ route('admin.edit.criteria',$criteria -> id) }}"
-                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
-                                                                <a href="{{ route('admin.delete.criteria',$criteria -> id) }}"
-                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                                <a href="{{ route('admin.edit.category',$categorie -> id) }}"
+                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
+                                                                <a href="{{ route('admin.delete.category',$categorie -> id) }}"
+                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delete</a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -78,7 +83,7 @@
                                         </tbody>
                                     </table>
                                     <div class="justify-content-center d-flex">
-                                        {!! $main_criteria -> links() !!}
+                                        {!! $categories -> links() !!}
                                     </div>
                                 </div>
                             </div>
@@ -90,6 +95,7 @@
     </div>
 </div>
 @endsection
+
 @section('script')
 <script>
     $('table').DataTable()

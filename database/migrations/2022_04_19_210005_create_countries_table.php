@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMainـcriteriaTable extends Migration
+class CreateCountriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateMainـcriteriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('main_criterias', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('slug')->unique()->nullable();
             $table->string('name');
-            $table->boolean('is_active');
-            $table->timestamps();
+            $table->string('nationality');
+            $table->string('alpha_2_code_');
+            $table->string('alpha_3_code_');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateMainـcriteriaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('main_criterias');
+        Schema::dropIfExists('countries');
     }
 }

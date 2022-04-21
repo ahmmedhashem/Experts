@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Site;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class CategoriesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,16 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required'
+            'type' => 'required|in:1,2',
+            'name' => 'required|string|max:100',
         ];
     }
 
     public function messages() {
         return [
-            'email.required' => 'من فضلك قم بادخال البريد الالكتروني',
-            'email.email' =>  'من فضلك ادخل بريد الكتروني صالح',
-            'password.required' => 'من فضلك ادخل كلمه المرور',
+            'name.required' => 'Category name is required',
+            'name.string' =>  'category name should be string',
+            'name.max' =>  'category name maximum 100 char'
         ];
     }
 }

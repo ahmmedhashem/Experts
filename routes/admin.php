@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\CriteriaController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ActivitiesController;
 use App\Http\Controllers\Admin\RulesControlller;
 use App\Http\Controllers\Admin\MissionsController;
@@ -45,13 +45,13 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin'], function() {
             Route::put('update', [ProfileController::class, 'update']) -> name('update.profile');
         });
 
-        Route::group(['prefix' => 'criteria'],function() {
-            Route::get('/', [CriteriaController::class,'index'])->name('admin.criteria');
-            Route::get('create', [CriteriaController::class,'create'])->name('admin.create.criteria');
-            Route::post('store', [CriteriaController::class,'store'])->name('admin.store.criteria');
-            Route::get('edit/{id}', [CriteriaController::class,'edit'])->name('admin.edit.criteria');
-            Route::put('update/{id}', [CriteriaController::class,'update'])->name('admin.update.criteria');
-            Route::get('delete/{id}', [CriteriaController::class,'delete'])->name('admin.delete.criteria');
+        Route::group(['prefix' => 'categories'],function() {
+            Route::get('/', [CategoriesController::class,'index'])->name('admin.categories');
+            Route::get('create', [CategoriesController::class,'create'])->name('admin.create.category');
+            Route::post('store', [CategoriesController::class,'store'])->name('admin.store.category');
+            Route::get('edit/{id}', [CategoriesController::class,'edit'])->name('admin.edit.category');
+            Route::put('update/{id}', [CategoriesController::class,'update'])->name('admin.update.category');
+            Route::get('delete/{id}', [CategoriesController::class,'delete'])->name('admin.delete.category');
         });
 
         Route::group(['prefix' => 'activities'],function() {
